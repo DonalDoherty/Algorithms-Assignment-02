@@ -9,8 +9,6 @@ public class User {
 	public Long id;
 	public String firstName;
 	public String lastName;
-	public String email;
-	public String password;
 	public char gender;
 	public int age;
 	public String occupation;
