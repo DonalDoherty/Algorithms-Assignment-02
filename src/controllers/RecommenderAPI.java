@@ -9,13 +9,13 @@ import models.Recommendation;
 public class RecommenderAPI implements RecommenderInterface {
 
 	@Override
-	public void addUser(String firstName, String lastName, int age, char gender, String occupation) {
+	public void addUser(String firstName, String lastName, String age, String gender, String occupation) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void removeUser(double userID) {
+	public void removeUser(Long userID) {
 		// TODO Auto-generated method stub
 
 	}
@@ -27,25 +27,25 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public void addRating(double userID, double movieID, int rating) {
+	public void addRating(Long userID, Long movieID, int rating) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Movie getMovie(double movieID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Rating> getUserRatings(double userID) {
+	public Movie getMovie(Long movieID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Recommendation> getUserRecommendations(double userID) {
+	public ArrayList<Rating> getUserRatings(Long userID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Recommendation> getUserRecommendations(Long userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
