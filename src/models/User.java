@@ -11,14 +11,14 @@ public class User {
 	public String lastName;
 	public String email;
 	public String password;
-	public String gender;
-	public String age;
+	public char gender;
+	public int age;
 	public String occupation;
 	
 	public Map<Long, Rating> ratings = new HashMap<>();
 	public Map<Long, Recommendation> recommendations = new HashMap<>();
 	
-	public User(String firstName, String lastName, String gender, String age, String occupation)
+	public User(String firstName, String lastName, char gender, int age, String occupation)
 	{
 		this.id = counter++;
 		this.firstName = firstName;
@@ -28,7 +28,7 @@ public class User {
 		this.occupation = occupation;
 	}
 	
-	public User(Long id, String firstName, String lastName, String gender, String age, String occupation)
+	public User(Long id, String firstName, String lastName, char gender, int age, String occupation)
 	{
 		this.id = id;
 		this.firstName = firstName;
@@ -36,5 +36,10 @@ public class User {
 		this.gender = gender;
 		this.age = age;
 		this.occupation = occupation;
+	}
+	
+	public String toString()
+	{
+		return "ID= " + id + " Name= " + firstName + " " + lastName + " Gender= " + gender + " Age= " + age + " Occupation= " + occupation;
 	}
 }

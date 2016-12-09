@@ -1,12 +1,25 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import models.Movie;
 import models.Rating;
 import models.Recommendation;
+import models.User;
+import utils.CSVLoader;
 
 public class RecommenderAPI implements RecommenderInterface {
+	
+	Map<Long, User> userIndex;
+	Map<Long, Movie> movieIndex;
+	
+	public RecommenderAPI(){
+		userIndex = new HashMap<>();
+		movieIndex = new HashMap<>();
+	}
 
 	@Override
 	public void addUser(String firstName, String lastName, String age, String gender, String occupation) {
@@ -57,8 +70,13 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public void load() {
-		// TODO Auto-generated method stub
+	public void load() throws Exception {
+		CSVLoader loader = new CSVLoader();
+		List <User> users = loader.loadUsers("Data/users5.dat");
+		for (User user : users)
+		{
+			userIndex.put(user.id, user);
+		}
 
 	}
 

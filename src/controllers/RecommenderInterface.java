@@ -24,8 +24,9 @@ public interface RecommenderInterface {
 	//Gets a list of the top 10 movies.
 	public ArrayList<Movie> getTopTenMovies();
 	//Loads the data
-	public void load();
+	public void load() throws Exception;
 	//Saves the current data
 	public void write();
+	
 
 }

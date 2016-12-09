@@ -25,14 +25,14 @@ public class CSVLoader {
 			String[] userTokens = userDetails.split(delims);
 			if (userTokens.length == 7)
 			{
-				String id			= userTokens[0];
+				Long id				= Long.parseLong(userTokens[0]);
 				String firstName	= userTokens[1];
 				String lastName		= userTokens[2];
-				String age			= userTokens[3];
-				String gender		= userTokens[4];
+				int age				= Integer.parseInt(userTokens[3]);
+				char gender			= userTokens[4].charAt(0);
 				String occupation	= userTokens[6];
 				
-				users.add(new User(firstName, lastName, gender, age, occupation));
+				users.add(new User(id, firstName, lastName, gender, age, occupation));
 			}
 				
 			else
@@ -45,12 +45,61 @@ public class CSVLoader {
 	
 	public List<Movie> loadMovies(String filename) throws Exception
 	{
-		return null;
+		File moviesFile = new File(filename);
+		In inMovies = new In(moviesFile);
+	
+		
+		String delims = "[|]";
+		List<Movie> movies = new ArrayList<Movie>();
+		while(!inMovies.isEmpty())
+		{
+			String movieDetails = inMovies.readLine();
+			String[] movieTokens = movieDetails.split(delims);
+			if (movieTokens.length == 23)
+			{
+				Long id			= Long.parseLong(movieTokens[0]);
+				String title		= movieTokens[1];
+				String year			= movieTokens[2];
+				String url			= movieTokens[3];
+				
+				movies.add(new Movie(id, title, year, url));
+			}
+				
+			else
+			{
+				throw new Exception("Invalid member length: " + movieTokens.length);
+			}
+		}
+		return movies;
 	}
 	
 	public List<Rating> loadRatings(String filename) throws Exception
 	{
-		return null;
-	}
+		File ratingsFile = new File(filename);
+		In inRatings = new In(ratingsFile);
+	
+		
+		String delims = "[|]";
+		List<Rating> ratings = new ArrayList<Rating>();
+		while(!inRatings.isEmpty())
+		{
+			String ratingDetails = inRatings.readLine();
+			String[] ratingTokens = ratingDetails.split(delims);
+			if (ratingTokens.length == 4)
+			{
+				Long userID			= Long.parseLong(ratingTokens[0]);
+				Long movieID		= Long.parseLong(ratingTokens[1]);
+				int rating			= Integer.parseInt(ratingTokens[2]);
+				
+				ratings.add(new Rating(userID, movieID, rating));
+			}
+				
+			else
+			{
+				throw new Exception("Invalid member length: " + ratingTokens.length);
+			}
+		}
+		return ratings;	
+		}
 
 }
