@@ -8,11 +8,11 @@ import models.Recommendation;
 
 public interface RecommenderInterface {
 	//Adds a user to the database
-	public void addUser(String firstName, String lastName, String age, String gender, String occupation);
+	public void addUser(String firstName, String lastName, int age, char gender, String occupation);
 	//Removes a user from the database
 	public void removeUser(Long userID);
 	//Adds a movie to the database
-	public void addMovie(String title, int year, String url);
+	public void addMovie(String title, String year, String url);
 	//Adds a rating from a user on a movie
 	public void addRating(Long userID, Long movieID, int rating);
 	//Gets a movie using its ID

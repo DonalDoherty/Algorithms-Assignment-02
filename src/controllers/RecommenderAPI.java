@@ -22,8 +22,9 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public void addUser(String firstName, String lastName, String age, String gender, String occupation) {
-		// TODO Auto-generated method stub
+	public void addUser(String firstName, String lastName, int age, char gender, String occupation) {
+		User user = new User(firstName, lastName, gender, age, occupation);
+		user.id = userIndex.size() + 1l;
 
 	}
 
@@ -34,7 +35,7 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public void addMovie(String title, int year, String url) {
+	public void addMovie(String title, String year, String url) {
 		// TODO Auto-generated method stub
 
 	}
@@ -72,10 +73,17 @@ public class RecommenderAPI implements RecommenderInterface {
 	@Override
 	public void load() throws Exception {
 		CSVLoader loader = new CSVLoader();
-		List <User> users = loader.loadUsers("Data/users5.dat");
+		//Loads users from Data
+		List<User> users = loader.loadUsers("Data/users5.dat");
 		for (User user : users)
 		{
 			userIndex.put(user.id, user);
+		}
+		//Loads Movies from Data
+		List<Movie> movies = loader.loadMovies("Data/items5.dat");
+		for (Movie movie : movies)
+		{
+			movieIndex.put(movie.id, movie);
 		}
 
 	}

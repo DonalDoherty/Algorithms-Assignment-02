@@ -16,7 +16,6 @@ public class User {
 	public String occupation;
 	
 	public Map<Long, Rating> ratings = new HashMap<>();
-	public Map<Long, Recommendation> recommendations = new HashMap<>();
 	
 	public User(String firstName, String lastName, char gender, int age, String occupation)
 	{
