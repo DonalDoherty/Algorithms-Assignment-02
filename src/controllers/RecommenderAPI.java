@@ -25,6 +25,7 @@ public class RecommenderAPI implements RecommenderInterface {
 	public void addUser(String firstName, String lastName, int age, char gender, String occupation) {
 		User user = new User(firstName, lastName, gender, age, occupation);
 		user.id = userIndex.size() + 1l;
+		userIndex.put(user.id, user);
 
 	}
 
