@@ -30,7 +30,7 @@ public class CSVLoader {
 				String lastName		= userTokens[2];
 				int age				= Integer.parseInt(userTokens[3]);
 				char gender			= userTokens[4].charAt(0);
-				String occupation	= userTokens[6];
+				String occupation	= userTokens[5];
 				
 				users.add(new User(id, firstName, lastName, gender, age, occupation));
 			}

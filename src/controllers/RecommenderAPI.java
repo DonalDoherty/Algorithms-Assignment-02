@@ -15,8 +15,8 @@ public class RecommenderAPI implements RecommenderInterface {
 	
 	Map<Long, User> userIndex;
 	Map<Long, Movie> movieIndex;
-	
-	public RecommenderAPI(){
+
+	public RecommenderAPI() throws Exception{
 		userIndex = new HashMap<>();
 		movieIndex = new HashMap<>();
 	}
@@ -31,14 +31,14 @@ public class RecommenderAPI implements RecommenderInterface {
 
 	@Override
 	public void removeUser(Long userID) {
-		// TODO Auto-generated method stub
-
+		userIndex.remove(userID);
 	}
 
 	@Override
 	public void addMovie(String title, String year, String url) {
-		// TODO Auto-generated method stub
-
+		Movie movie = new Movie(title, year, url);
+		movie.id = movieIndex.size() +1l;
+		movieIndex.put(movie.id, movie);
 	}
 
 	@Override
@@ -49,8 +49,7 @@ public class RecommenderAPI implements RecommenderInterface {
 
 	@Override
 	public Movie getMovie(Long movieID) {
-		// TODO Auto-generated method stub
-		return null;
+		return movieIndex.get(movieID);
 	}
 
 	@Override
