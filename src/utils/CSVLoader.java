@@ -8,12 +8,15 @@ import models.Movie;
 import models.Rating;
 import models.User;
 
+import in;
+
 public class CSVLoader {
 	
 	public List<User> loadUsers(String filename) throws Exception
 	{
 		File usersFile = new File(filename);
 		In inUsers = new In(usersFile);
+	
 		
 		String delims = "[|]";
 		List<User> users = new ArrayList<User>();
