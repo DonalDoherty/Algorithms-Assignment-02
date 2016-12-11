@@ -5,7 +5,6 @@ import java.util.List;
 
 import models.Movie;
 import models.Rating;
-import models.Recommendation;
 
 public interface RecommenderInterface {
 	//Adds a user to the database
@@ -21,7 +20,7 @@ public interface RecommenderInterface {
 	//Gets a list of all the users ratings
 	public ArrayList<Rating> getUserRatings(Long userID);
 	//Gets a list of all the users Recommendations
-	public ArrayList<Recommendation> getUserRecommendations(Long userID);
+	public ArrayList<Movie> getUserRecommendations(Long userID);
 	//Gets a list of the top 10 movies.
 	public List<Movie> getTopTenMovies();
 	//Loads the data

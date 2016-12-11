@@ -8,7 +8,6 @@ import java.util.Map;
 
 import models.Movie;
 import models.Rating;
-import models.Recommendation;
 import models.User;
 import utils.CSVLoader;
 
@@ -18,6 +17,12 @@ public class RecommenderAPI implements RecommenderInterface {
 	Map<Long, Movie> movieIndex;
 	List<Rating> ratingIndex;
 
+	
+//	public static void main(String[] args) throws Exception
+//	{
+//		RecommenderAPI api = new RecommenderAPI();
+//		api.getMovie(1683l)
+//	}
 	public RecommenderAPI() throws Exception{
 		userIndex = new HashMap<>();
 		movieIndex = new HashMap<>();
@@ -47,7 +52,12 @@ public class RecommenderAPI implements RecommenderInterface {
 
 	@Override
 	public void addRating(Long userID, Long movieID, int rating) {
+		userIndex.get(userID).getRatings().add(new Rating(userID, movieID, rating));
+		movieIndex.get(movieID).getRatings().add(new Rating(userID, movieID, rating));
+		movieIndex.get(movieID).computeRating();
 		ratingIndex.add(new Rating(userID, movieID, rating));
+
+		
 	}
 
 	@Override
@@ -61,7 +71,7 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public ArrayList<Recommendation> getUserRecommendations(Long userID) {
+	public ArrayList<Movie> getUserRecommendations(Long userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
