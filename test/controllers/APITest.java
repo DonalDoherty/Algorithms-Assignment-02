@@ -94,11 +94,23 @@ public class APITest {
 		assertEquals(api.getUserRatings(660l).size(), 1);
 	}
 
-	
+	//Tests to see if the top ten movies are correct
 	@Test
 	public void getTopTenMoviesTest() throws Exception
 	{
 		assertEquals(api.getTopTenMovies().toString(), topTenList.toString());
+	}
+	//Tests to see if an xml data file is created
+	@Test 
+	public void writeTest() throws Exception{
+		api.write();
+		assertTrue(api.data.isFile());
+	}
+	
+	//Test to check that the correct recomendations are being returned.
+	@Test
+	public void getUserRecommendationsTest(){
+		assertEquals(api.getUserRecommendations(20l).toString(), 1);
 	}
 
 }

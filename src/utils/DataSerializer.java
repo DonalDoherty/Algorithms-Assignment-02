@@ -11,6 +11,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class DataSerializer implements Serializer {
+	@SuppressWarnings("rawtypes")
 	private Stack stack = new Stack();
 	private File file;
 
@@ -19,6 +20,7 @@ public class DataSerializer implements Serializer {
 		this.file = file;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void push(Object o) 
 	{
@@ -50,6 +52,7 @@ public class DataSerializer implements Serializer {
 
 	
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void read() throws Exception 
 	{
