@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ public class RecommenderAPI implements RecommenderInterface {
 		movieIndex = new HashMap<>();
 		ratingIndex = new ArrayList<>();
 	}
+	
 
 	@Override
 	public void addUser(String firstName, String lastName, int age, char gender, String occupation) {
@@ -65,9 +67,17 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public ArrayList<Movie> getTopTenMovies() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Movie> getTopTenMovies() {
+		ArrayList<Movie> avgSort = new ArrayList<Movie>();
+		for(Long i = 1l; i<movieIndex.size(); i++)
+		{
+			if(movieIndex.get(i).getAvg() != 0)
+			{
+				avgSort.add(movieIndex.get(i));
+			}
+		}
+		Collections.sort(avgSort);
+		return avgSort.subList(0, 10);
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
 	static Long counter = 0l;
 	
 	private Long id;
@@ -13,7 +13,7 @@ public class Movie {
 	private ArrayList<Rating> ratings;
 	
 	public Movie(String title, String year, String url)
-	{
+	{ 
 		ratings = new ArrayList<Rating>();
 		avg = 0;
 		this.id = counter++;
@@ -101,5 +101,11 @@ public class Movie {
 
 	public void setRatings(ArrayList<Rating> ratings) {
 		this.ratings = ratings;
+	}
+
+	@Override
+	public int compareTo(Movie compMovie) {
+		int compareQuantity = ((Movie) compMovie).getAvg();
+		return compareQuantity - this.avg;
 	}
 }
