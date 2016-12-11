@@ -15,17 +15,19 @@ public class RecommenderAPI implements RecommenderInterface {
 	
 	Map<Long, User> userIndex;
 	Map<Long, Movie> movieIndex;
+	List<Rating> ratingIndex;
 
 	public RecommenderAPI() throws Exception{
 		userIndex = new HashMap<>();
 		movieIndex = new HashMap<>();
+		ratingIndex = new ArrayList<>();
 	}
 
 	@Override
 	public void addUser(String firstName, String lastName, int age, char gender, String occupation) {
 		User user = new User(firstName, lastName, gender, age, occupation);
-		user.id = userIndex.size() + 1l;
-		userIndex.put(user.id, user);
+		user.setId(userIndex.size() + 1l);
+		userIndex.put(user.getId(), user);
 
 	}
 
@@ -37,14 +39,13 @@ public class RecommenderAPI implements RecommenderInterface {
 	@Override
 	public void addMovie(String title, String year, String url) {
 		Movie movie = new Movie(title, year, url);
-		movie.id = movieIndex.size() +1l;
-		movieIndex.put(movie.id, movie);
+		movie.setId(movieIndex.size() +1l);
+		movieIndex.put(movie.getId(), movie);
 	}
 
 	@Override
 	public void addRating(Long userID, Long movieID, int rating) {
-		// TODO Auto-generated method stub
-
+		ratingIndex.add(new Rating(userID, movieID, rating));
 	}
 
 	@Override
@@ -54,8 +55,7 @@ public class RecommenderAPI implements RecommenderInterface {
 
 	@Override
 	public ArrayList<Rating> getUserRatings(Long userID) {
-		// TODO Auto-generated method stub
-		return null;
+		return userIndex.get(userID).getRatings();
 	}
 
 	@Override
@@ -74,16 +74,37 @@ public class RecommenderAPI implements RecommenderInterface {
 	public void load() throws Exception {
 		CSVLoader loader = new CSVLoader();
 		//Loads users from Data
-		List<User> users = loader.loadUsers("Data/users5.dat");
+		List<User> users = loader.loadUsers("Data/users.dat");
 		for (User user : users)
 		{
-			userIndex.put(user.id, user);
+			userIndex.put(user.getId(), user);
 		}
 		//Loads Movies from Data
-		List<Movie> movies = loader.loadMovies("Data/items5.dat");
+		List<Movie> movies = loader.loadMovies("Data/items.dat");
 		for (Movie movie : movies)
 		{
-			movieIndex.put(movie.id, movie);
+			movieIndex.put(movie.getId(), movie);
+		}
+		//Loads Ratings from Data
+		List<Rating> ratings = loader.loadRatings("Data/ratings.dat");
+		for (Rating rating : ratings)
+		{
+			for (User user : users)
+			{
+				if(user.getId() == rating.getUserID())
+				{
+					user.getRatings().add(rating);
+				}
+			}
+			for (Movie movie : movies)
+			{
+				if(movie.getId() == rating.getMovieID())
+				{
+					movie.getRatings().add(rating); 
+				}
+				movie.computeRating();
+			}
+			ratingIndex.add(rating);
 		}
 
 	}

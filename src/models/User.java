@@ -1,22 +1,24 @@
 package models;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.ArrayList;
+
 
 public class User {
 	static Long counter = 0l;
 	
-	public Long id;
-	public String firstName;
-	public String lastName;
-	public char gender;
-	public int age;
-	public String occupation;
+	private Long id;
+	private String firstName;
+	private String lastName;
+	private char gender;
+	private int age;
+	private String occupation;
 	
-	public Map<Long, Rating> ratings = new HashMap<>();
+	private ArrayList<Rating> ratings;
 	
 	public User(String firstName, String lastName, char gender, int age, String occupation)
 	{
+		this.ratings = new ArrayList<Rating>();
 		this.id = counter++;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -27,6 +29,7 @@ public class User {
 	
 	public User(Long id, String firstName, String lastName, char gender, int age, String occupation)
 	{
+		this.ratings = new ArrayList<Rating>();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -38,5 +41,61 @@ public class User {
 	public String toString()
 	{
 		return "ID= " + id + " Name= " + firstName + " " + lastName + " Gender= " + gender + " Age= " + age + " Occupation= " + occupation;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public ArrayList<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(ArrayList<Rating> ratings) {
+		this.ratings = ratings;
 	}
 }
